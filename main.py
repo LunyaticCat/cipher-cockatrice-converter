@@ -27,8 +27,9 @@ def add_card_properties_and_set(cards_dict, card):
         prop = ET.SubElement(card_element, "prop")
         ET.SubElement(prop, "manacost").text = card.get('Cost', '')
         ET.SubElement(prop, "colors").text = card.get('Color', 'NORMAL')
-        ET.SubElement(prop, "maintype").text = card.get('Class', '')
         ET.SubElement(prop, "type").text = card.get('Type', '')
+        ET.SubElement(prop, "maintype").text = "Cipher Card"
+        ET.SubElement(prop, "Class").text = card.get('Class', '')
 
         if card.get('Attack') and card.get('Support'):
             ET.SubElement(prop, "pt").text = f"{card.get('Attack')}/{card.get('Support')}"
