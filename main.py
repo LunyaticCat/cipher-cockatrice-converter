@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as minidom
+import uuid
 
 BASE_IMAGE_URL = "https://cipher-compendium.com/images/cards/"
 
@@ -39,7 +40,7 @@ def add_card_properties_and_set(cards_dict, card):
     set_code = card.get('Imagefile', '')  # Extract set code from Imagefile
     image_url = f"{BASE_IMAGE_URL}{set_code}.png"  # Construct image URL
 
-    set_element = ET.SubElement(card_element, "set", rarity=card.get('Rarity', 'Unknown'), picURL=image_url)
+    set_element = ET.SubElement(card_element, "set",uuid=uuid.uuid4().__str__(), rarity=card.get('Rarity', 'Unknown'), picURL=image_url)
     set_element.text = card.get('Set', 'Unknown')
 
 def create_cockatrice_xml(cards):
