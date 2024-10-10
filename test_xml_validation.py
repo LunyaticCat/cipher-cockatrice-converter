@@ -4,7 +4,7 @@ import main  # Import your main script
 
 class TestXMLValidation(unittest.TestCase):
     XSD_PATH = "xsd/cards.xsd"
-    XML_PATH = "./output_cards.xml"
+    XML_PATH = "cipher.xml"
 
     def setUp(self):
         """Set up method to run the main script before the test."""

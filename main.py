@@ -5,10 +5,7 @@ import uuid
 BASE_IMAGE_URL = "https://cipher-compendium.com/images/cards/"
 
 txt_file = "./cipher/official-cards.txt"
-xml_file = "./output_cards.xml"
-
-def escape_description(description):
-    return description.replace("\n", " ").replace("&#x27;", "'")
+xml_file = "cipher.xml"
 
 def normalize_card_name(card_name):
     return card_name.replace("+", "").strip()
@@ -22,8 +19,7 @@ def add_card_properties_and_set(cards_dict, card):
         card_element = ET.Element("card")
         ET.SubElement(card_element, "name").text = normalized_name
 
-        description = f"{card.get('Skill#1', '')} {card.get('Skill#2', '')} {card.get('Skill#3', '')} {card.get('Skill#4', '')}".strip()
-        ET.SubElement(card_element, "text").text = escape_description(description)
+        ET.SubElement(card_element, "text").text = f"{card.get('Skill#1', '')}\n{card.get('Skill#2', '')}\n{card.get('Skill#3', '')}\n{card.get('Skill#4', '')}".strip()
 
         prop = ET.SubElement(card_element, "prop")
         ET.SubElement(prop, "manacost").text = card.get('Cost', '')
