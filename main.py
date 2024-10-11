@@ -19,7 +19,12 @@ def add_card_properties_and_set(cards_dict, card):
         card_element = ET.Element("card")
         ET.SubElement(card_element, "name").text = normalized_name
 
-        ET.SubElement(card_element, "text").text = f"{card.get('Skill#1', '')}\n{card.get('Skill#2', '')}\n{card.get('Skill#3', '')}\n{card.get('Skill#4', '')}".strip()
+        skill_text = ""
+        for i in range(1,4):
+            if card.get(f"Skill#{i}", '') != '-':
+                skill_text += f"{card.get(f"Skill#{i}")}\n\n"
+
+        ET.SubElement(card_element, "text").text = skill_text
 
         prop = ET.SubElement(card_element, "prop")
         ET.SubElement(prop, "manacost").text = card.get('Cost', '')
